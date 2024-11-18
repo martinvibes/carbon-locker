@@ -1,5 +1,4 @@
 use starknet::ContractAddress;
-use carbon_v3::models::carbon_vintage::CarbonVintage;
 
 #[starknet::interface]
 trait ILockerHandler<TContractState> {
