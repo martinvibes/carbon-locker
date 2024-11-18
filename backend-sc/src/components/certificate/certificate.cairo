@@ -1,0 +1,2 @@
+#[starknet::component]
+mod NFTComponent {}
