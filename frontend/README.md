@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend: Carbon Token Locker
+
+This folder contains the **Next.js frontend** for the Carbon Token Locker. Users can lock their carbon credits, view their engagement certificates (NFTs), and track their offset status.
 
 ## Getting Started
 
