@@ -15,6 +15,8 @@ mod Locker {
     use openzeppelin::introspection::src5::SRC5Component;
     // Access Control - RBAC
     use openzeppelin::access::accesscontrol::AccessControlComponent;
+    // Locker
+    use carbon_locker::components::locker::locker_handler::LockerComponent;
 
     component!(path: OwnableComponent, storage: ownable, event: OwnableEvent);
     component!(path: UpgradeableComponent, storage: upgradeable, event: UpgradeableEvent);
@@ -48,6 +50,8 @@ mod Locker {
         src5: SRC5Component::Storage,
         #[substorage(v0)]
         accesscontrol: AccessControlComponent::Storage,
+        #[substorage(v0)]
+        locker: LockerComponent::Storage,
     }
 
     #[event]
