@@ -10,6 +10,8 @@ mod LockerComponent {
     // Internal imports
     use carbon_locker::components::locker::interface::ILockerHandler;
 
+    // External imports
+    use carbon_v3::components::vintage::VintageComponent;
 
     // Roles
     use openzeppelin::access::accesscontrol::interface::IAccessControl;
@@ -21,21 +23,25 @@ mod LockerComponent {
     use carbon_v3::contracts::project::Project::OWNER_ROLE;
 
     #[derive(Copy, Drop, Debug, Hash, starknet::Store, Serde, PartialEq)]
-    struct Allocation {
-        claimee: ContractAddress,
-        amount: u128,
-        timestamp: u128,
-        id: u128
+    struct Lock {
+        id: u256, // Unique ID of the lock
+        user: ContractAddress,
+        token_id: u256, // token_id locked, related to vintage
+        amount: u256,
+        start_time: u256,
+        end_time: u256,
+        offsettable: bool
     }
 
     #[storage]
     struct Storage {
-        locked_credits: LegacyMap<
-            (ContractAddress, u256), (u256, u256)
-        >, // (user, token_id) => (amount, unlock_time)
-        staking_rewards: LegacyMap<(ContractAddress, u256), u256>, // (user, token_id) => rewards
-        reward_rate: u256,
-        penalty_rate: u256,
+        locks: LegacyMap<u256, Lock>, // ID => Lock struct
+        user_locks: LegacyMap<
+            ContractAddress, Array<u256>
+        >, // User address => List of his lock ids
+        next_lock_id: u256,
+        nft_component: ContractAddress, // NFT component address
+        offsetter: ContractAddress, // Offsetter component address
     }
 
     #[event]
@@ -53,6 +59,8 @@ mod LockerComponent {
         +Drop<TContractState>,
         +IAccessControl<TContractState>
     > of ILockerHandler<ComponentState<TContractState>> {
+
+        /// Lock carbon credits, it should have the "Audited" status
         fn lock_credits(
             ref self: ComponentState<TContractState>,
             token_id: u256,
