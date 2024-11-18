@@ -36,9 +36,7 @@ mod LockerComponent {
     #[storage]
     struct Storage {
         locks: LegacyMap<u256, Lock>, // ID => Lock struct
-        user_locks: LegacyMap<
-            ContractAddress, Array<u256>
-        >, // User address => List of his lock ids
+        user_locks: LegacyMap<ContractAddress, Array<u256>>, // User address => List of his lock ids
         next_lock_id: u256,
         nft_component: ContractAddress, // NFT component address
         offsetter: ContractAddress, // Offsetter component address
@@ -59,7 +57,6 @@ mod LockerComponent {
         +Drop<TContractState>,
         +IAccessControl<TContractState>
     > of ILockerHandler<ComponentState<TContractState>> {
-
         /// Lock carbon credits, it should have the "Audited" status
         fn lock_credits(
             ref self: ComponentState<TContractState>,

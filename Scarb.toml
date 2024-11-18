@@ -7,7 +7,7 @@ version = "0.1.0"
 [dependencies]
 starknet = ">=2.6.0"
 openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", tag = "v0.10.0" }
-carbon_v3 = { git = "https://github.com/carbonable-labs/carbon-protocol-v3.git", branch = "main" }
+carbon_v3 = { git = "https://github.com/carbonable-labs/carbon-protocol-v3.git" }
 
 [dev-dependencies]
 snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry", tag = "v0.26.0" }

@@ -56,7 +56,7 @@ dependencies = [
 [[package]]
 name = "carbon_v3"
 version = "0.1.0"
-source = "git+https://github.com/carbonable-labs/carbon-protocol-v3.git?branch=main#dbbe230bc88cfcc505cf0328422dd9948f842e6e"
+source = "git+https://github.com/carbonable-labs/carbon-protocol-v3.git#c40f382a742289a420b52e637af6457cdd1e051b"
 dependencies = [
  "alexandria_merkle_tree",
  "alexandria_numeric",
