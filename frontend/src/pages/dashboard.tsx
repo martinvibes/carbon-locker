@@ -1,4 +1,4 @@
-import useMockData from '../hooks/useMockData';
+import useMockData from "../hooks/useMockData";
 
 const Dashboard = () => {
   const { getLocks, getNFTs } = useMockData();
@@ -13,7 +13,8 @@ const Dashboard = () => {
         <ul>
           {locks.map((lock) => (
             <li key={lock.id}>
-              Token {lock.tokenId}: {lock.amount} locked for {lock.duration} ({lock.status})
+              Token {lock.tokenId}: {lock.amount} locked for {lock.duration} (
+              {lock.status})
             </li>
           ))}
         </ul>
